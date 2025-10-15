@@ -5,11 +5,11 @@
   --light-gray: #f4f4f4;
 }
 
-/* Overall layout */
 html {
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
   padding: 1rem;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -21,44 +21,37 @@ body {
   box-shadow: 0 0 0 12px var(--blue);
 }
 
-/* Heading styling */
 #title {
   font-weight: 800;
   color: var(--blue);
+}
+
+h1, h2, h3 {
   text-align: center;
 }
+
+p {
+  color: #454545;
+  text-align: center;
+  line-height: 1.6;
+}
+
+hr, h2, h3 {
+  color: var(--light-blue);
+}
+
 .yellow {
   color: var(--yellow);
   text-shadow: -1px -1px 0 var(--blue), 1px -1px 0 var(--blue),
     -1px 1px 0 var(--blue), 1px 1px 0 var(--blue);
 }
 
-/* Text */
-h1, h2, h3 {
-  text-align: center;
-}
-p {
-  color: #454545;
-  text-align: center;
-  line-height: 1.6;
-}
-hr, h2, h3 {
-  color: var(--light-blue);
-}
-a {
-  color: var(--light-blue);
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-
-/* Main layout */
 main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
+
 img {
   width: 70%;
   height: auto;
@@ -114,7 +107,7 @@ img {
   transform: translateY(0);
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
   body {
     outline-width: 8px;
