@@ -79,6 +79,7 @@
     <p>Thank you in advance to all who donate!</p>
     <p>Thank you to all who have made an impact in my life!</p>
     <p>I look forward to seeing you all there on 4/20/2026!!!</p>
+    <br>
     <p>Feel free to reach out (<a href="mailto:cdemurjian@gmail.com">cdemurjian@gmail.com</a>) or <a href="https://www.linkedin.com/in/cdemurjian/" target="_blank">connect!</a></p>
   </footer>
 
@@ -96,71 +97,6 @@
     }, { threshold: 0.15 });
     fadeElements.forEach(el => observer.observe(el));
   </script>
-  
-  <script>
-  let lastScrollY = 0;
-  let offset = 0;
-  let direction = 1;
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    direction = scrollY > lastScrollY ? 1 : -1; // reverse on scroll up
-    lastScrollY = scrollY;
-
-    offset += direction * 2; // speed of the snake
-    document.body.style.setProperty('--snake-offset', offset + 'px');
-    document.body.style.setProperty('--snake-dir', direction);
-    document.body.style.setProperty(
-      '--snake-bg',
-      `repeating-linear-gradient(90deg, var(--yellow) 0 20px, var(--blue) 20px 40px)`
-    );
-
-    document.querySelector('body::before');
-    document.body.style.setProperty('--snake-scroll', scrollY + 'px');
-
-    document.body.style.setProperty(
-      'background-position',
-      `${offset}px ${offset}px`
-    );
-
-    // apply actual animation to the pseudo-border
-    document.querySelector('body').style.setProperty(
-      '--snake-position',
-      `${offset}px 0`
-    );
-
-    // apply via JS since ::before is fixed
-    document.body.style.setProperty('--snake-pos', offset + 'px');
-    document.body.style.setProperty(
-      '--snake-gradient',
-      `repeating-linear-gradient(90deg, var(--yellow) 0 20px, var(--blue) 20px 40px)`
-    );
-    document.body.style.setProperty(
-      '--snake-move',
-      `${offset}px`
-    );
-
-    document.body.style.setProperty(
-      '--snake-transform',
-      `translateY(${offset}px)`
-    );
-
-    // update ::before background position
-    document.querySelector('body').style.setProperty(
-      '--border-offset',
-      `${offset}px`
-    );
-    document.querySelector('body::before');
-    document.styleSheets[0].addRule(
-      'body::before',
-      `background-position: ${offset}px ${offset}px;`
-    );
-  });
-</script>
-
-
 </body>
 
-
-  
 </html>
