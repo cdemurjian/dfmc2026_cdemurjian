@@ -96,6 +96,35 @@
     }, { threshold: 0.15 });
     fadeElements.forEach(el => observer.observe(el));
   </script>
+  <script>
+  let ticking = false;
+  let lastScrollY = 0;
+  let direction = 1;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const currentY = window.scrollY;
+        // Reverse direction when scrolling up
+        direction = currentY > lastScrollY ? 1 : -1;
+        lastScrollY = currentY;
+
+        const offset = currentY * 0.4 * direction;
+        document.body.style.borderImage = `repeating-linear-gradient(
+          ${90 + offset / 10}deg,
+          var(--yellow) 0 20px,
+          var(--blue) 20px 40px
+        ) 25`;
+
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+</script>
+
 </body>
 
+
+  
 </html>
