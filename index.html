@@ -92,7 +92,7 @@
      class="floating-donate" target="_blank">DONATE</a>
 
   <script>
-    // Fade-in animation for elements
+    // Fade-in scroll observer
     const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -101,35 +101,32 @@
     }, { threshold: 0.15 });
     fadeElements.forEach(el => observer.observe(el));
 
-    // Animated border + container on scroll
+    // Flashing border effect on scroll
+    let lastScrollY = 0;
+    let hue = 220; // start blue
     let ticking = false;
-    window.addEventListener('scroll', () => {
+
+    window.addEventListener("scroll", () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          const maxExpand = 14;  // slightly thicker max
-          const minExpand = 6;
-          const scrollRange = 600;
-          const progress = Math.min(scrollY / scrollRange, 1);
-          const pulse = Math.sin(scrollY / 80) * 2; // subtle oscillation
+          const scrollDiff = window.scrollY - lastScrollY;
+          lastScrollY = window.scrollY;
 
-          const outlineW = minExpand + (maxExpand - minExpand) * progress + pulse;
-          const scale = 0.98 + progress * 0.02;
+          // vary hue based on scroll direction and speed
+          hue += scrollDiff * 0.5;
+          if (hue > 60) hue = 60; // yellow limit
+          if (hue < 200) hue = 200; // blue limit
 
-          document.body.style.outlineWidth = `${outlineW}px`;
-          document.body.style.boxShadow = `0 0 0 ${outlineW}px var(--blue)`;
-          document.body.style.transform = `scale(${scale})`;
+          const borderColor = `hsl(${hue}, 90%, 45%)`;
+          document.body.style.boxShadow = `0 0 0 12px ${borderColor}`;
+          document.body.style.outlineColor = borderColor;
 
           ticking = false;
         });
         ticking = true;
       }
     });
-
-    // Initial gentle load animation
-    window.addEventListener('load', () => {
-      document.body.classList.add('page-load');
-    });
   </script>
 </body>
+
 </html>
