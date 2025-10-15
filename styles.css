@@ -14,8 +14,8 @@ html {
 
 body {
   max-width: 70ch;
-  margin: 3rem auto;            /* increased vertical margin */
-  padding: 3rem 2rem;           /* more inner breathing room */
+  margin: 3rem auto;
+  padding: 3rem 2rem;
   background-color: var(--light-gray);
   outline: 12px dashed var(--yellow);
   box-shadow: 0 0 0 12px var(--blue);
@@ -30,14 +30,25 @@ h1, h2, h3 {
   text-align: center;
 }
 
+/* 🔹 Make section headers the correct blue */
+h2, h3 {
+  color: var(--blue);
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
 p {
   color: #454545;
   text-align: center;
   line-height: 1.6;
 }
 
-hr, h2, h3 {
+hr {
   color: var(--light-blue);
+  border: none;
+  border-top: 2px solid var(--light-blue);
+  width: 50%;
+  margin: 1.5rem auto;
 }
 
 .yellow {
@@ -49,7 +60,7 @@ hr, h2, h3 {
 main {
   display: flex;
   flex-direction: column;
-  gap: 3rem;                    /* wider spacing between sections */
+  gap: 3rem;
 }
 
 img {
@@ -63,13 +74,13 @@ img {
   display: block;
   text-align: center;
   font-weight: bold;
-  margin: 2rem auto;            /* extra vertical breathing room */
+  margin: 2rem auto;
   padding: 0.6rem 1.5rem;
   width: fit-content;
   background-color: var(--yellow);
   color: var(--blue);
   border: 4px solid var(--blue);
-  border-radius: 10px;          /* subtle rounding */
+  border-radius: 10px;
   transition: transform 0.2s, background-color 0.2s;
 }
 .donate:hover {
@@ -85,7 +96,7 @@ img {
   background-color: var(--yellow);
   color: var(--blue);
   border: 4px solid var(--blue);
-  border-radius: 12px;          /* rounded corners for consistency */
+  border-radius: 12px;
   padding: 0.6rem 1.4rem;
   font-weight: bold;
   text-decoration: none;
@@ -108,6 +119,18 @@ img {
   transform: translateY(0);
 }
 
+/* 🔹 Highlighted final statement */
+strong {
+  display: block;
+  text-align: center;
+  font-size: 1.25em;      /* larger text */
+  font-weight: 800;       /* bold emphasis */
+  color: var(--blue);     /* Dana-Farber blue for visual tie-in */
+  margin: 1.5rem auto;
+  line-height: 1.5;
+  max-width: 90%;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   body {
@@ -121,5 +144,8 @@ img {
   }
   img {
     width: 90%;
+  }
+  strong {
+    font-size: 1.1em;
   }
 }
