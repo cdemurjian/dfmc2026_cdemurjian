@@ -12,24 +12,47 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 🔹 Animated border replaces outline + box shadow */
 body {
+  position: relative;
   max-width: 70ch;
   margin: 3rem auto;
   padding: 3rem 2rem;
   background-color: var(--light-gray);
+  z-index: 0;
+}
 
-  /* base striped border */
-  border: 20px solid transparent;
-  border-image: repeating-linear-gradient(
+/* 🐍 Snake border layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(70ch + 6rem);
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+
+  /* create the “snake” pattern */
+  background: repeating-linear-gradient(
     90deg,
     var(--yellow) 0 20px,
     var(--blue) 20px 40px
-  ) 25;
-  background-clip: padding-box;
-  transition: border-image 0.2s ease-out;
+  );
+
+  /* clip it so only the edges show */
+  mask: 
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 12px;
+  box-sizing: border-box;
+
+  border-radius: 8px;
 }
 
+/* 🧱 Layout and text */
 #title {
   font-weight: 800;
   color: var(--blue);
@@ -39,7 +62,6 @@ h1, h2, h3 {
   text-align: center;
 }
 
-/* 🔹 Section headers: proper Dana-Farber blue */
 h2, h3 {
   color: var(--blue);
   margin-top: 1.5rem;
@@ -97,7 +119,6 @@ img {
   background-color: #fff96b;
 }
 
-/* Optional: tighten the first paragraph below the donate button */
 main > p:first-of-type {
   margin-top: 0.25rem;
 }
@@ -133,7 +154,7 @@ main > p:first-of-type {
   transform: translateY(0);
 }
 
-/* 🔹 Highlighted final statement */
+/* Highlighted final statement */
 strong {
   display: block;
   text-align: center;
@@ -147,7 +168,7 @@ strong {
 
 /* Footer styling */
 footer {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.4;
   color: #333;
   margin-top: 2rem;
@@ -165,8 +186,11 @@ footer a:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
+  body::before {
+    width: calc(90% + 3rem);
+    padding: 8px;
+  }
   body {
-    border-width: 12px;
     margin: 1.5rem auto;
     padding: 2rem 1.25rem;
   }
