@@ -129,7 +129,7 @@ main > p:first-of-type {
 .intro {
   color: var(--blue);
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1em;
   text-align: center;
   margin: 1rem auto 0.5rem auto;
 }
