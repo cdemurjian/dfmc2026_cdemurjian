@@ -8,6 +8,7 @@
 html {
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
+  padding: 1rem;
 }
 
 body {
@@ -15,6 +16,8 @@ body {
   margin: auto;
   padding: 1rem;
   background-color: var(--light-gray);
+  outline: 12px dashed var(--yellow);
+  box-shadow: 0 0 0 12px var(--blue);
 }
 
 #title {
