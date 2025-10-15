@@ -154,3 +154,22 @@ strong {
     font-size: 1.1em;
   }
 }
+
+/* Footer styling */
+footer {
+  font-size: 0.9rem;          /* smaller text size */
+  line-height: 1.4;           /* tighter vertical spacing */
+  color: #333;                /* softer gray for footer text */
+  margin-top: 2rem;
+  text-align: center;
+}
+
+footer a {
+  color: var(--light-blue);   /* keep links in your theme color */
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
