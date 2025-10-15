@@ -13,46 +13,14 @@ html {
 }
 
 body {
-  position: relative;
   max-width: 70ch;
   margin: 3rem auto;
   padding: 3rem 2rem;
   background-color: var(--light-gray);
-  z-index: 0;
+  outline: 12px dashed var(--yellow);
+  box-shadow: 0 0 0 12px var(--blue);
 }
 
-/* 🐍 Snake border layer */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(70ch + 6rem);
-  height: 100%;
-  pointer-events: none;
-  z-index: 1000;
-
-  /* create the “snake” pattern */
-  background: repeating-linear-gradient(
-    90deg,
-    var(--yellow) 0 20px,
-    var(--blue) 20px 40px
-  );
-
-  /* clip it so only the edges show */
-  mask: 
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  padding: 12px;
-  box-sizing: border-box;
-
-  border-radius: 8px;
-}
-
-/* 🧱 Layout and text */
 #title {
   font-weight: 800;
   color: var(--blue);
@@ -62,6 +30,7 @@ h1, h2, h3 {
   text-align: center;
 }
 
+/* 🔹 Make section headers the correct blue */
 h2, h3 {
   color: var(--blue);
   margin-top: 1.5rem;
@@ -105,7 +74,7 @@ img {
   display: block;
   text-align: center;
   font-weight: bold;
-  margin: 0.75rem auto 0.5rem auto;
+  margin: 0.75rem auto 0.5rem auto;  /* minimal spacing above/below */
   padding: 0.6rem 1.5rem;
   width: fit-content;
   background-color: var(--yellow);
@@ -119,8 +88,9 @@ img {
   background-color: #fff96b;
 }
 
+/* Optional: tighten the first paragraph below the donate button */
 main > p:first-of-type {
-  margin-top: 0.25rem;
+  margin-top: 0.25rem;  /* bring it closer to the button */
 }
 
 /* Floating donate button */
@@ -154,43 +124,23 @@ main > p:first-of-type {
   transform: translateY(0);
 }
 
-/* Highlighted final statement */
+/* 🔹 Highlighted final statement */
 strong {
   display: block;
   text-align: center;
-  font-size: 1.25em;
-  font-weight: 800;
-  color: var(--blue);
+  font-size: 1.25em;      /* larger text */
+  font-weight: 800;       /* bold emphasis */
+  color: var(--blue);     /* Dana-Farber blue for visual tie-in */
   margin: 1.5rem auto;
   line-height: 1.5;
   max-width: 90%;
 }
 
-/* Footer styling */
-footer {
-  font-size: 0.8rem;
-  line-height: 1.4;
-  color: #333;
-  margin-top: 2rem;
-  text-align: center;
-}
-
-footer a {
-  color: var(--light-blue);
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
-  body::before {
-    width: calc(90% + 3rem);
-    padding: 8px;
-  }
   body {
+    outline-width: 8px;
+    box-shadow: 0 0 0 8px var(--blue);
     margin: 1.5rem auto;
     padding: 2rem 1.25rem;
   }
@@ -203,4 +153,22 @@ footer a:hover {
   strong {
     font-size: 1.1em;
   }
+}
+
+/* Footer styling */
+footer {
+  font-size: 0.85rem;          /* smaller text size */
+  line-height: 1.4;           /* tighter vertical spacing */
+  color: #333;                /* softer gray for footer text */
+  margin-top: 2rem;
+  text-align: center;
+}
+
+footer a {
+  color: var(--light-blue);   /* keep links in your theme color */
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
