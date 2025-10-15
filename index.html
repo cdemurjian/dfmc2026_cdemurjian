@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="styles.css" />
   <title>BOSTON 2026</title>
 </head>
@@ -13,8 +15,10 @@
 
   <main>
     <img src="charlie-running.jpg" alt="Charlie running" class="fade-in" />
-    <a class="donate fade-in" href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal"
-      target="_blank">DONATE</a>
+
+    <!-- Main Donate Button (this one becomes floating later) -->
+    <a id="donate-main" class="donate fade-in"
+      href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal" target="_blank">DONATE</a>
 
     <p class="fade-in">
       100% of every dollar raised through the Dana-Farber Marathon Challenge supports the
@@ -80,6 +84,7 @@
   </main>
 
   <hr>
+
   <footer class="fade-in">
     <p>Thank you in advance to all who donate!</p>
     <p>Thank you to all who have made an impact in my life!</p>
@@ -87,12 +92,8 @@
     <p>Feel free to reach out (<a href="mailto:cdemurjian@gmail.com">cdemurjian@gmail.com</a>) or connect!</p>
   </footer>
 
-  <!-- Floating Donate Button -->
-  <a href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal"
-     class="floating-donate" target="_blank">DONATE</a>
-
-  <!-- Fade-in animation script -->
   <script>
+    // Fade-in animations for scroll
     const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -100,6 +101,18 @@
       });
     }, { threshold: 0.15 });
     fadeElements.forEach(el => observer.observe(el));
+
+    // Donate button transforms into floating
+    const donateMain = document.getElementById('donate-main');
+    const donateOffset = donateMain.offsetTop + donateMain.offsetHeight + 50;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > donateOffset) {
+        donateMain.classList.add('floating');
+      } else {
+        donateMain.classList.remove('floating');
+      }
+    });
   </script>
 </body>
 
