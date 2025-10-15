@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="styles.css" />
   <title>BOSTON 2026</title>
 </head>
 
@@ -14,12 +13,8 @@
 
   <main>
     <img src="charlie-running.jpg" alt="Charlie running" class="fade-in" />
-
-    <!-- Main donate button (becomes floating after scroll) -->
-    <a id="donate-main" class="donate fade-in"
-      href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal" target="_blank">
-      DONATE
-    </a>
+    <a class="donate fade-in" href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal"
+      target="_blank">DONATE</a>
 
     <p class="fade-in">
       100% of every dollar raised through the Dana-Farber Marathon Challenge supports the
@@ -70,11 +65,13 @@
       <p>
         Being a part of such great collaborative efforts only further cemented my choice to run and support Dana-Farber.
       </p>
-      <p><strong>
-          I'm ready to take on 26.2 miles — not just for myself, but for every life touched by cancer.
-          My goal is to raise $20,000 for Dana-Farber's lifesaving research, and with your support, I know we can go even further.
-        </strong></p>
-
+      <p>
+        <strong>
+          I'm ready to take on 26.2 miles &mdash; not just for myself, but for every life touched by cancer.
+          My goal is to raise $20,000 for Dana-Farber's lifesaving research, and with your support, I know we can go
+          even further.
+        </strong>
+      </p>
       <br>
       <a class="donate fade-in"
         href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal" target="_blank">DONATE NOW</a>
@@ -83,7 +80,6 @@
   </main>
 
   <hr>
-
   <footer class="fade-in">
     <p>Thank you in advance to all who donate!</p>
     <p>Thank you to all who have made an impact in my life!</p>
@@ -91,8 +87,13 @@
     <p>Feel free to reach out (<a href="mailto:cdemurjian@gmail.com">cdemurjian@gmail.com</a>) or connect!</p>
   </footer>
 
+  <!-- Floating Donate Button -->
+  <a href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal"
+     class="floating-donate" target="_blank">DONATE</a>
+
+  <!-- Fade-in animation script + smooth border scroll -->
   <script>
-    // Fade-in elements as they appear
+    // Fade-in scroll
     const fadeElements = document.querySelectorAll('.fade-in');
     const fadeObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -101,25 +102,25 @@
     }, { threshold: 0.15 });
     fadeElements.forEach(el => fadeObserver.observe(el));
 
-    // Animate border as you scroll
-    window.addEventListener("scroll", () => {
-      const scrollProgress = Math.min(window.scrollY / (document.body.scrollHeight - window.innerHeight), 1);
-      document.body.style.outlineWidth = `${4 + scrollProgress * 12}px`;
-      document.body.style.boxShadow = `0 0 0 ${4 + scrollProgress * 12}px var(--blue)`;
+    // Gentle border animation on scroll
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const maxExpand = 12; // max width in px
+          const minExpand = 8;  // min width in px
+          const distance = 400; // how much scroll range before max
+          const progress = Math.min(scrollY / distance, 1);
+          const newWidth = minExpand + (maxExpand - minExpand) * progress;
+          document.body.style.outlineWidth = `${newWidth}px`;
+          document.body.style.boxShadow = `0 0 0 ${newWidth}px var(--blue)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
     });
-
-    // Make donate button float once it's out of view
-    const donateButton = document.getElementById('donate-main');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) {
-          donateButton.classList.add('floating');
-        } else {
-          donateButton.classList.remove('floating');
-        }
-      });
-    }, { threshold: 1.0 });
-    observer.observe(donateButton);
   </script>
 </body>
+
 </html>
