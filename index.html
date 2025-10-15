@@ -1,31 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="styles.css" />
   <title>BOSTON 2026</title>
-  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
   <header>
     <h1 id="title">RUNNING <span class="yellow">BOSTON</span> 2026 <span class="yellow">FOR</span> DANA-FARBER</h1>
   </header>
-
   <main>
-    <img src="charlie-running.jpg" alt="Charlie running" class="fade-in" />
-
-    <a class="donate fade-in" href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal" target="_blank">DONATE</a>
-
-    <p class="fade-in">
+    <img src="charlie-running.jpg" alt="Charlie running" />
+    <a class="donate" href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal">DONATE</a>
+    <p>
       100% of every dollar raised through the Dana-Farber Marathon Challenge supports the
-      <a href="https://danafarber.jimmyfund.org/site/SPageServer?pagename=dfmc_barrprogram_cancer&fr_id=2520" target="_blank">
-        Claudia Adams Barr Program in Innovative Basic Cancer Research</a>.
+      <a href="https://danafarber.jimmyfund.org/site/SPageServer?pagename=dfmc_barrprogram_cancer&fr_id=2520"
+        target="_blank">Claudia Adams Barr Program in Innovative Basic Cancer Research</a>.
       This program fuels groundbreaking, early-stage discoveries that lead to new cancer treatments and cures.
       Your donation directly empowers scientists to defy cancer at its roots.
     </p>
 
-    <section id="story" class="fade-in">
+    <section id="story">
       <h2>MY STORY</h2>
       <hr>
 
@@ -66,34 +62,26 @@
       <p>
         Being a part of such great collaborative efforts only further cemented my choice to run and support Dana-Farber.
       </p>
-      <p><strong>
-        I'm ready to take on 26.2 miles &mdash; not just for myself, but for every life touched by cancer.
-        My goal is to raise $20,000 for Dana-Farber's lifesaving research, and with your support, I know we can go even further.
-      </strong></p>
-
-      <a class="donate" href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal" target="_blank">DONATE NOW</a>
+      <p>
+        <strong>
+          I'm ready to take on 26.2 miles &mdash; not just for myself, but for every life touched by cancer.
+          My goal is to raise $20,000 for Dana-Farber's lifesaving research, and with your support, I know we can go
+          even further.
+        </strong>
+      </p>
+      <br>
+      <a class="donate"
+        href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal">DONATE NOW</a>
+      <br>
     </section>
   </main>
-
   <hr>
-  <footer class="fade-in">
+  <footer>
     <p>Thank you in advance to all who donate!</p>
     <p>Thank you to all who have made an impact in my life!</p>
+    <br>
     <p>Feel free to reach out (<a href="mailto:cdemurjian@gmail.com">cdemurjian@gmail.com</a>) or connect!</p>
   </footer>
-
-  <!-- Floating Donate Button -->
-  <a href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal" class="floating-donate" target="_blank">DONATE</a>
-
-  <!-- Fade-in animation -->
-  <script>
-    const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15 });
-    fadeElements.forEach(el => observer.observe(el));
-  </script>
 </body>
+
 </html>
