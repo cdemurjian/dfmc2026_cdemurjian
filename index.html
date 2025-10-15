@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" href="styles.css" />
   <title>BOSTON 2026</title>
 </head>
 
@@ -16,9 +15,11 @@
   <main>
     <img src="charlie-running.jpg" alt="Charlie running" class="fade-in" />
 
-    <!-- Main Donate Button (this one becomes floating later) -->
+    <!-- Main donate button (becomes floating after scroll) -->
     <a id="donate-main" class="donate fade-in"
-      href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal" target="_blank">DONATE</a>
+      href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal" target="_blank">
+      DONATE
+    </a>
 
     <p class="fade-in">
       100% of every dollar raised through the Dana-Farber Marathon Challenge supports the
@@ -69,13 +70,11 @@
       <p>
         Being a part of such great collaborative efforts only further cemented my choice to run and support Dana-Farber.
       </p>
-      <p>
-        <strong>
-          I'm ready to take on 26.2 miles &mdash; not just for myself, but for every life touched by cancer.
-          My goal is to raise $20,000 for Dana-Farber's lifesaving research, and with your support, I know we can go
-          even further.
-        </strong>
-      </p>
+      <p><strong>
+          I'm ready to take on 26.2 miles — not just for myself, but for every life touched by cancer.
+          My goal is to raise $20,000 for Dana-Farber's lifesaving research, and with your support, I know we can go even further.
+        </strong></p>
+
       <br>
       <a class="donate fade-in"
         href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal" target="_blank">DONATE NOW</a>
@@ -93,27 +92,34 @@
   </footer>
 
   <script>
-    // Fade-in animations for scroll
+    // Fade-in elements as they appear
     const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
+    const fadeObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.15 });
-    fadeElements.forEach(el => observer.observe(el));
+    fadeElements.forEach(el => fadeObserver.observe(el));
 
-    // Donate button transforms into floating
-    const donateMain = document.getElementById('donate-main');
-    const donateOffset = donateMain.offsetTop + donateMain.offsetHeight + 50;
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > donateOffset) {
-        donateMain.classList.add('floating');
-      } else {
-        donateMain.classList.remove('floating');
-      }
+    // Animate border as you scroll
+    window.addEventListener("scroll", () => {
+      const scrollProgress = Math.min(window.scrollY / (document.body.scrollHeight - window.innerHeight), 1);
+      document.body.style.outlineWidth = `${4 + scrollProgress * 12}px`;
+      document.body.style.boxShadow = `0 0 0 ${4 + scrollProgress * 12}px var(--blue)`;
     });
+
+    // Make donate button float once it's out of view
+    const donateButton = document.getElementById('donate-main');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          donateButton.classList.add('floating');
+        } else {
+          donateButton.classList.remove('floating');
+        }
+      });
+    }, { threshold: 1.0 });
+    observer.observe(donateButton);
   </script>
 </body>
-
 </html>
