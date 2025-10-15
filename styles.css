@@ -74,7 +74,7 @@ img {
   display: block;
   text-align: center;
   font-weight: bold;
-  margin: 1.25rem auto 1.75rem auto;  /* tightened spacing above/below */
+  margin: 0.75rem auto 0.5rem auto;  /* minimal spacing above/below */
   padding: 0.6rem 1.5rem;
   width: fit-content;
   background-color: var(--yellow);
@@ -88,6 +88,10 @@ img {
   background-color: #fff96b;
 }
 
+/* Optional: tighten the first paragraph below the donate button */
+main > p:first-of-type {
+  margin-top: 0.25rem;  /* bring it closer to the button */
+}
 
 /* Floating donate button */
 .floating-donate {
