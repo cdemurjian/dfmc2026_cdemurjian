@@ -91,36 +91,45 @@
   <a href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal"
      class="floating-donate" target="_blank">DONATE</a>
 
-  <!-- Fade-in animation script + smooth border scroll -->
   <script>
-    // Fade-in scroll
+    // Fade-in animation for elements
     const fadeElements = document.querySelectorAll('.fade-in');
-    const fadeObserver = new IntersectionObserver(entries => {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.15 });
-    fadeElements.forEach(el => fadeObserver.observe(el));
+    fadeElements.forEach(el => observer.observe(el));
 
-    // Gentle border animation on scroll
+    // Animated border + container on scroll
     let ticking = false;
     window.addEventListener('scroll', () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollY = window.scrollY;
-          const maxExpand = 12; // max width in px
-          const minExpand = 8;  // min width in px
-          const distance = 400; // how much scroll range before max
-          const progress = Math.min(scrollY / distance, 1);
-          const newWidth = minExpand + (maxExpand - minExpand) * progress;
-          document.body.style.outlineWidth = `${newWidth}px`;
-          document.body.style.boxShadow = `0 0 0 ${newWidth}px var(--blue)`;
+          const maxExpand = 14;  // slightly thicker max
+          const minExpand = 6;
+          const scrollRange = 600;
+          const progress = Math.min(scrollY / scrollRange, 1);
+          const pulse = Math.sin(scrollY / 80) * 2; // subtle oscillation
+
+          const outlineW = minExpand + (maxExpand - minExpand) * progress + pulse;
+          const scale = 0.98 + progress * 0.02;
+
+          document.body.style.outlineWidth = `${outlineW}px`;
+          document.body.style.boxShadow = `0 0 0 ${outlineW}px var(--blue)`;
+          document.body.style.transform = `scale(${scale})`;
+
           ticking = false;
         });
         ticking = true;
       }
     });
+
+    // Initial gentle load animation
+    window.addEventListener('load', () => {
+      document.body.classList.add('page-load');
+    });
   </script>
 </body>
-
 </html>
