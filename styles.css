@@ -2,93 +2,48 @@
   --yellow: #ffde00;
   --blue: #162f77;
   --light-blue: #3a6edb;
-  --light-gray: #f9f9f9;
-  --red: #e63946;
+  --light-gray: #f4f4f4;
+}
+
+/* Overall layout */
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  padding: 1rem;
 }
 
 body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  color: #222;
+  max-width: 70ch;
+  margin: auto;
+  padding: 1rem;
   background-color: var(--light-gray);
-  line-height: 1.7;
+  outline: 12px dashed var(--yellow);
+  box-shadow: 0 0 0 12px var(--blue);
 }
 
-/* HERO SECTION */
-.hero {
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-              url("charlie-running.jpg") center/cover no-repeat;
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
+/* Heading styling */
+#title {
+  font-weight: 800;
+  color: var(--blue);
   text-align: center;
-}
-.hero .overlay {
-  padding: 20px;
-}
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.8rem;
-  margin-bottom: 20px;
 }
 .yellow {
   color: var(--yellow);
+  text-shadow: -1px -1px 0 var(--blue), 1px -1px 0 var(--blue),
+    -1px 1px 0 var(--blue), 1px 1px 0 var(--blue);
 }
 
-/* DONATE BUTTON (hero) */
-.donate-btn {
-  display: inline-block;
-  background: var(--red);
-  color: white;
-  padding: 14px 28px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-.donate-btn:hover {
-  background: #b81f2a;
-}
-
-/* FLOATING DONATE BUTTON */
-.floating-donate {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: var(--red);
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 50px;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: background 0.3s, transform 0.3s;
-}
-.floating-donate:hover {
-  background: #b81f2a;
-  transform: scale(1.05);
-}
-
-/* SECTIONS */
-main {
-  max-width: 900px;
-  margin: auto;
-  padding: 60px 20px;
-}
-section {
-  margin-bottom: 80px;
-}
-h2, h3 {
+/* Text */
+h1, h2, h3 {
   text-align: center;
-  font-family: 'Playfair Display', serif;
-  color: var(--blue);
 }
 p {
-  max-width: 700px;
-  margin: 0 auto 1.5em auto;
+  color: #454545;
   text-align: center;
+  line-height: 1.6;
+}
+hr, h2, h3 {
+  color: var(--light-blue);
 }
 a {
   color: var(--light-blue);
@@ -98,10 +53,60 @@ a:hover {
   text-decoration: underline;
 }
 
-/* FADE-IN ANIMATION */
+/* Main layout */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+img {
+  width: 70%;
+  height: auto;
+  align-self: center;
+}
+
+/* Donate buttons */
+.donate {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  margin: auto;
+  padding: 0.5rem 0.75rem;
+  width: fit-content;
+  background-color: var(--yellow);
+  color: var(--blue);
+  border: 4px solid var(--blue);
+  transition: transform 0.2s, background-color 0.2s;
+}
+.donate:hover {
+  transform: scale(1.05);
+  background-color: #fff96b;
+}
+
+/* Floating donate button */
+.floating-donate {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: var(--yellow);
+  color: var(--blue);
+  border: 4px solid var(--blue);
+  border-radius: 50px;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.floating-donate:hover {
+  transform: scale(1.05);
+  background-color: #fff96b;
+}
+
+/* Fade-in animation */
 .fade-in {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(25px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 .fade-in.visible {
@@ -109,25 +114,13 @@ a:hover {
   transform: translateY(0);
 }
 
-/* FOOTER */
-footer {
-  background: var(--blue);
-  color: white;
-  text-align: center;
-  padding: 40px 20px;
-  font-size: 0.95em;
-}
-
-/* RESPONSIVE */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  .hero {
-    height: 70vh;
-    padding: 40px 10px;
+  body {
+    outline-width: 8px;
+    box-shadow: 0 0 0 8px var(--blue);
   }
-  .hero h1 {
-    font-size: 2rem;
-  }
-  p {
-    padding: 0 10px;
+  img {
+    width: 90%;
   }
 }
