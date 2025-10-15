@@ -74,7 +74,7 @@ img {
   display: block;
   text-align: center;
   font-weight: bold;
-  margin: 2rem auto;
+  margin: 1.25rem auto 1.75rem auto;  /* tightened spacing above/below */
   padding: 0.6rem 1.5rem;
   width: fit-content;
   background-color: var(--yellow);
@@ -87,6 +87,7 @@ img {
   transform: scale(1.05);
   background-color: #fff96b;
 }
+
 
 /* Floating donate button */
 .floating-donate {
