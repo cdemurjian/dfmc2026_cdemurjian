@@ -91,48 +91,29 @@
   <a href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal"
      class="floating-donate" target="_blank">DONATE</a>
 
-  <!-- Scroll animations -->
+  <!-- Scroll-based outline rotation -->
   <script>
-    // Fade-in for content
     const fadeElements = document.querySelectorAll('.fade-in');
-    const fadeObserver = new IntersectionObserver(entries => {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.15 });
-    fadeElements.forEach(el => fadeObserver.observe(el));
+    fadeElements.forEach(el => observer.observe(el));
 
-    // Border color shimmer on scroll (no size/scale change)
-    const root = document.documentElement;
-    let lastY = 0, ticking = false;
-
-    function updateFrame() {
-      const y = window.scrollY;
-      const speed = Math.abs(y - lastY);
-
-      // Map scroll position to hue between blue (215) and yellow (50),
-      // then add a small oscillation based on speed for "alive" feel.
-      const baseHue = 215 - Math.min(y / 4, 165); // 215 -> ~50 as you scroll down
-      const pulse = Math.min(speed, 30) * 0.6;    // subtle flash on quick scroll
-      const hue = Math.max(50, Math.min(215, baseHue + (y > lastY ? pulse : -pulse)));
-
-      const col = `hsl(${hue}, 90%, 45%)`;
-      root.style.setProperty('--frame', col);
-
-      lastY = y;
-      ticking = false;
-    }
-
+    // Animate border rotation based on scroll
+    let ticking = false;
     window.addEventListener('scroll', () => {
       if (!ticking) {
-        window.requestAnimationFrame(updateFrame);
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const rotation = scrollY * 0.5; // rotation speed factor
+          document.body.style.setProperty('--border-rotation', rotation + 'deg');
+          ticking = false;
+        });
         ticking = true;
       }
-    }, { passive: true });
-
-    // Initialize on load so first paint is correct
-    updateFrame();
+    });
   </script>
 </body>
-
 </html>
