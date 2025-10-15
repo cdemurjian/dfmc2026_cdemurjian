@@ -7,13 +7,16 @@
 </head>
 
 <body>
-  <header>
+  <header class="fade-in">
     <h1 id="title">RUNNING <span class="yellow">BOSTON</span> 2026 <span class="yellow">FOR</span> DANA-FARBER</h1>
   </header>
+
   <main>
-    <img src="charlie-running.jpg" alt="Charlie running" />
-    <a class="donate" href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal">DONATE</a>
-    <p>
+    <img src="charlie-running.jpg" alt="Charlie running" class="fade-in" />
+    <a class="donate fade-in" href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal"
+      target="_blank">DONATE</a>
+
+    <p class="fade-in">
       100% of every dollar raised through the Dana-Farber Marathon Challenge supports the
       <a href="https://danafarber.jimmyfund.org/site/SPageServer?pagename=dfmc_barrprogram_cancer&fr_id=2520"
         target="_blank">Claudia Adams Barr Program in Innovative Basic Cancer Research</a>.
@@ -21,7 +24,7 @@
       Your donation directly empowers scientists to defy cancer at its roots.
     </p>
 
-    <section id="story">
+    <section id="story" class="fade-in">
       <h2>MY STORY</h2>
       <hr>
 
@@ -70,18 +73,34 @@
         </strong>
       </p>
       <br>
-      <a class="donate"
-        href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal">DONATE NOW</a>
+      <a class="donate fade-in"
+        href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal" target="_blank">DONATE NOW</a>
       <br>
     </section>
   </main>
+
   <hr>
-  <footer>
+  <footer class="fade-in">
     <p>Thank you in advance to all who donate!</p>
     <p>Thank you to all who have made an impact in my life!</p>
     <br>
     <p>Feel free to reach out (<a href="mailto:cdemurjian@gmail.com">cdemurjian@gmail.com</a>) or connect!</p>
   </footer>
+
+  <!-- Floating Donate Button -->
+  <a href="https://danafarber.jimmyfund.org/site/TR?px=2759664&fr_id=2520&pg=personal"
+     class="floating-donate" target="_blank">DONATE</a>
+
+  <!-- Fade-in animation script -->
+  <script>
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+    fadeElements.forEach(el => observer.observe(el));
+  </script>
 </body>
 
 </html>
