@@ -8,32 +8,22 @@
 html {
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
-  padding: 1rem;
+  padding: 0;
+  margin: 0;
   scroll-behavior: smooth;
 }
 
+/* Keeps the top of the border visible */
 body {
   max-width: 70ch;
-  margin: auto;
+  margin: 1rem auto; /* ensures full top border is visible */
   padding: 1rem;
   background-color: var(--light-gray);
-  outline: 6px dashed var(--yellow);
-  box-shadow: 0 0 0 6px var(--blue);
-  transition: outline-width 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
-  opacity: 0;
-  transform: scale(0.97);
+  outline: 12px dashed var(--yellow);
+  box-shadow: 0 0 0 12px var(--blue);
+  transition: box-shadow 0.15s ease-out, outline-color 0.15s ease-out;
 }
 
-/* Page load fade-in */
-body.page-load {
-  animation: fadeInPage 1.2s ease-out forwards;
-}
-@keyframes fadeInPage {
-  0% { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-/* Titles */
 #title {
   font-weight: 800;
   color: var(--blue);
@@ -56,10 +46,9 @@ hr, h2, h3 {
 .yellow {
   color: var(--yellow);
   text-shadow: -1px -1px 0 var(--blue), 1px -1px 0 var(--blue),
-    -1px 1px 0 var(--blue), 1px 1px 0 var(--blue);
+    -1px 1px 0 var(--blue), 1px 1px 0 var(--blue), 1px 1px 0 var(--blue);
 }
 
-/* Layout */
 main {
   display: flex;
   flex-direction: column;
@@ -124,8 +113,8 @@ img {
 /* Responsive */
 @media (max-width: 768px) {
   body {
-    outline-width: 5px;
-    box-shadow: 0 0 0 5px var(--blue);
+    outline-width: 8px;
+    box-shadow: 0 0 0 8px var(--blue);
   }
   img {
     width: 90%;
