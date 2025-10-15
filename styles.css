@@ -12,13 +12,22 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 🔹 Animated border replaces outline + box shadow */
 body {
   max-width: 70ch;
   margin: 3rem auto;
   padding: 3rem 2rem;
   background-color: var(--light-gray);
-  outline: 12px dashed var(--yellow);
-  box-shadow: 0 0 0 12px var(--blue);
+
+  /* base striped border */
+  border: 20px solid transparent;
+  border-image: repeating-linear-gradient(
+    90deg,
+    var(--yellow) 0 20px,
+    var(--blue) 20px 40px
+  ) 25;
+  background-clip: padding-box;
+  transition: border-image 0.2s ease-out;
 }
 
 #title {
@@ -30,7 +39,7 @@ h1, h2, h3 {
   text-align: center;
 }
 
-/* 🔹 Make section headers the correct blue */
+/* 🔹 Section headers: proper Dana-Farber blue */
 h2, h3 {
   color: var(--blue);
   margin-top: 1.5rem;
@@ -74,7 +83,7 @@ img {
   display: block;
   text-align: center;
   font-weight: bold;
-  margin: 0.75rem auto 0.5rem auto;  /* minimal spacing above/below */
+  margin: 0.75rem auto 0.5rem auto;
   padding: 0.6rem 1.5rem;
   width: fit-content;
   background-color: var(--yellow);
@@ -90,7 +99,7 @@ img {
 
 /* Optional: tighten the first paragraph below the donate button */
 main > p:first-of-type {
-  margin-top: 0.25rem;  /* bring it closer to the button */
+  margin-top: 0.25rem;
 }
 
 /* Floating donate button */
@@ -128,19 +137,36 @@ main > p:first-of-type {
 strong {
   display: block;
   text-align: center;
-  font-size: 1.25em;      /* larger text */
-  font-weight: 800;       /* bold emphasis */
-  color: var(--blue);     /* Dana-Farber blue for visual tie-in */
+  font-size: 1.25em;
+  font-weight: 800;
+  color: var(--blue);
   margin: 1.5rem auto;
   line-height: 1.5;
   max-width: 90%;
 }
 
+/* Footer styling */
+footer {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #333;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+footer a {
+  color: var(--light-blue);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   body {
-    outline-width: 8px;
-    box-shadow: 0 0 0 8px var(--blue);
+    border-width: 12px;
     margin: 1.5rem auto;
     padding: 2rem 1.25rem;
   }
@@ -154,22 +180,3 @@ strong {
     font-size: 1.1em;
   }
 }
-
-/* Footer styling */
-footer {
-  font-size: 0.8rem;          /* smaller text size */
-  line-height: 1.4;           /* tighter vertical spacing */
-  color: #333;                /* softer gray for footer text */
-  margin-top: 2rem;
-  text-align: center;
-}
-
-footer a {
-  color: var(--light-blue);   /* keep links in your theme color */
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
