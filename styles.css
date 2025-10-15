@@ -3,25 +3,33 @@
   --blue: #162f77;
   --light-blue: #3a6edb;
   --light-gray: #f4f4f4;
+
+  /* Dynamic border color controlled by JS */
+  --frame: #162f77; /* start at your blue */
 }
 
 html {
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
-  padding: 0;
-  margin: 0;
+  padding: 0;        /* ensure top border is visible */
+  margin: 0;         /* ensure top border is visible */
   scroll-behavior: smooth;
 }
 
-/* Keeps the top of the border visible */
 body {
   max-width: 70ch;
-  margin: 1rem auto; /* ensures full top border is visible */
+  margin: 1rem auto; /* creates breathing room so full frame shows */
   padding: 1rem;
   background-color: var(--light-gray);
-  outline: 12px dashed var(--yellow);
-  box-shadow: 0 0 0 12px var(--blue);
-  transition: box-shadow 0.15s ease-out, outline-color 0.15s ease-out;
+
+  /* Use the dynamic color for BOTH the dashed outline and outer frame */
+  outline-width: 12px;
+  outline-style: dashed;
+  outline-color: var(--frame);
+  box-shadow: 0 0 0 12px var(--frame);
+
+  /* Smooth color transitions (no “spazzing”) */
+  transition: outline-color 100ms ease-out, box-shadow 100ms ease-out;
 }
 
 #title {
@@ -46,7 +54,7 @@ hr, h2, h3 {
 .yellow {
   color: var(--yellow);
   text-shadow: -1px -1px 0 var(--blue), 1px -1px 0 var(--blue),
-    -1px 1px 0 var(--blue), 1px 1px 0 var(--blue), 1px 1px 0 var(--blue);
+               -1px 1px 0 var(--blue),  1px 1px 0 var(--blue);
 }
 
 main {
@@ -79,7 +87,7 @@ img {
   background-color: #fff96b;
 }
 
-/* Floating donate button */
+/* Floating donate button (always visible) */
 .floating-donate {
   position: fixed;
   bottom: 25px;
@@ -99,7 +107,7 @@ img {
   background-color: #fff96b;
 }
 
-/* Fade-in animation */
+/* Fade-in for content blocks (as you already had) */
 .fade-in {
   opacity: 0;
   transform: translateY(25px);
@@ -114,7 +122,7 @@ img {
 @media (max-width: 768px) {
   body {
     outline-width: 8px;
-    box-shadow: 0 0 0 8px var(--blue);
+    box-shadow: 0 0 0 8px var(--frame);
   }
   img {
     width: 90%;
