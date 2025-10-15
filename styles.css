@@ -5,6 +5,7 @@
   --light-gray: #f4f4f4;
 }
 
+/* Global */
 html {
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
@@ -12,6 +13,11 @@ html {
   scroll-behavior: smooth;
 }
 
+* {
+  transition: all 0.25s ease-out;
+}
+
+/* Container + border animation */
 body {
   max-width: 70ch;
   margin: auto;
@@ -19,13 +25,39 @@ body {
   background-color: var(--light-gray);
   outline: 12px dashed var(--yellow);
   box-shadow: 0 0 0 12px var(--blue);
+  opacity: 0;
+  transform: scale(0.98);
+  animation: fadeInContainer 1.2s ease-out forwards;
 }
 
+@keyframes fadeInContainer {
+  0% {
+    opacity: 0;
+    outline-width: 0px;
+    box-shadow: 0 0 0 0 var(--blue);
+  }
+  100% {
+    opacity: 1;
+    outline-width: 12px;
+    box-shadow: 0 0 0 12px var(--blue);
+    transform: scale(1);
+  }
+}
+
+/* Header and title */
 #title {
   font-weight: 800;
   color: var(--blue);
+  text-align: center;
 }
 
+.yellow {
+  color: var(--yellow);
+  text-shadow: -1px -1px 0 var(--blue), 1px -1px 0 var(--blue),
+    -1px 1px 0 var(--blue), 1px 1px 0 var(--blue);
+}
+
+/* Text */
 h1, h2, h3 {
   text-align: center;
 }
@@ -40,12 +72,16 @@ hr, h2, h3 {
   color: var(--light-blue);
 }
 
-.yellow {
-  color: var(--yellow);
-  text-shadow: -1px -1px 0 var(--blue), 1px -1px 0 var(--blue),
-    -1px 1px 0 var(--blue), 1px 1px 0 var(--blue);
+a {
+  color: var(--light-blue);
+  text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout */
 main {
   display: flex;
   flex-direction: column;
@@ -69,50 +105,45 @@ img {
   background-color: var(--yellow);
   color: var(--blue);
   border: 4px solid var(--blue);
-  transition: transform 0.2s, background-color 0.2s;
+  border-radius: 8px;
+  transition: transform 0.3s, background-color 0.3s;
 }
+
 .donate:hover {
   transform: scale(1.05);
   background-color: #fff96b;
 }
 
-/* Floating donate button */
-.floating-donate {
+/* Floating mode for donate button */
+.donate.floating {
   position: fixed;
   bottom: 25px;
   right: 25px;
-  background-color: var(--yellow);
-  color: var(--blue);
-  border: 4px solid var(--blue);
+  z-index: 999;
   border-radius: 50px;
-  padding: 0.6rem 1.2rem;
-  font-weight: bold;
-  text-decoration: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-.floating-donate:hover {
-  transform: scale(1.05);
-  background-color: #fff96b;
+  padding: 0.6rem 1.2rem;
 }
 
-/* Fade-in animation */
+/* Fade-in animations */
 .fade-in {
   opacity: 0;
   transform: translateY(25px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
+
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Responsive */
+/* Responsive tweaks */
 @media (max-width: 768px) {
   body {
     outline-width: 8px;
     box-shadow: 0 0 0 8px var(--blue);
   }
+
   img {
     width: 90%;
   }
