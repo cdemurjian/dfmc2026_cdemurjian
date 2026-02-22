@@ -3,105 +3,698 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dana-Farber Marathon Challenge - Opportunity Drawing</title>
+    <title>Opportunity Drawing — DFMC 2026</title>
+    <link rel="icon" type="image/png" href="9456b6fccfe9a7111c350aab43e6b232.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --yellow:      #ffde00;
+            --yellow-hi:   #ffe94d;
+            --blue:        #162f77;
+            --blue-mid:    #1e3d99;
+            --cream:       #f5f4ee;
+            --white:       #ffffff;
+            --text:        #1a1a1a;
+            --muted:       #6a6a6a;
+            --border:      #e2e1d8;
+        }
+
+        html {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--cream);
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 28px,
+                rgba(22, 47, 119, 0.028) 28px,
+                rgba(22, 47, 119, 0.028) 29px
+            );
+            color: var(--text);
             line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-            background: #f4f4f4;
+            min-height: 100vh;
         }
-        h1 {
-            color: #162f77;
-            border-bottom: 3px solid #ffde00;
-            padding-bottom: 10px;
-        }
-        h2 {
-            color: #162f77;
-            margin-top: 30px;
-        }
-        h3 {
-            color: #444;
-            margin-top: 20px;
-        }
-        .intro {
-            background-color: #f5f5f5;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-        .prize-section {
-            margin-bottom: 30px;
-        }
-        .businesses {
-            font-weight: bold;
-            color: #162f77;
-        }
-        .note {
-            font-style: italic;
-            color: #666;
-            margin-top: 10px;
-        }
-        ul {
-            margin: 10px 0;
-        }
-        li {
-            margin: 8px 0;
-        }
-        hr {
-            border: none;
-            border-top: 2px solid #ffde00;
-            margin: 30px 0;
-        }
-        .closing {
-            font-weight: bold;
+
+        /* ── HEADER ── */
+        header {
+            background: var(--blue);
+            padding: 1.75rem 1.5rem 5rem;
             text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #f5f5f5;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.75rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--yellow); }
+
+        .header-eyebrow {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.35em;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 0.2rem;
+        }
+
+        .header-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.75rem, 14vw, 6.5rem);
+            line-height: 0.92;
+            color: var(--white);
+            letter-spacing: 0.02em;
+        }
+
+        .header-title .accent {
+            color: var(--yellow);
+            display: block;
+        }
+
+        .tagline {
+            margin-top: 1rem;
+            color: rgba(255,255,255,0.55);
+            font-size: 0.875rem;
+            font-style: italic;
+            letter-spacing: 0.04em;
+        }
+
+        /* ── Staggered header animations ── */
+        @keyframes riseUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .h-1 { animation: riseUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.05s both; }
+        .h-2 { animation: riseUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.15s both; }
+        .h-3 { animation: riseUp 0.55s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
+        .h-4 { animation: riseUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.38s both; }
+
+        /* ── CONTAINER ── */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 1.25rem 3rem;
+        }
+
+        /* ── SECTION LABEL ── */
+        .section-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: var(--yellow);
+            border-radius: 1px;
+        }
+
+        /* ── INTRO ── */
+        .intro {
+            padding: 2.25rem 0 0;
+            margin-bottom: 2rem;
+        }
+
+        .intro .lead {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--blue);
+            line-height: 1.55;
+            margin-bottom: 0.7rem;
+        }
+
+        .intro .sub {
+            font-size: 0.925rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ── RULE ── */
+        .rule {
+            border: none;
+            border-top: 1.5px solid var(--border);
+            margin: 0 0 2rem;
+        }
+
+        /* ── HOW IT WORKS ── */
+        .how {
+            margin-bottom: 2rem;
+        }
+
+        .how .sub-note {
+            font-size: 0.875rem;
+            color: var(--muted);
+            margin-bottom: 1.25rem;
+        }
+
+        .pricing-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-tile {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem 1rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .price-tile::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--yellow);
+        }
+
+        .price-tile .num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.25rem;
+            color: var(--blue);
+            line-height: 1;
+            display: block;
+        }
+
+        .price-tile .entries {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+            font-weight: 500;
+        }
+
+        /* Venmo CTA — retro press effect */
+        .venmo-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--yellow);
+            color: var(--blue);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            border-radius: 10px;
+            border: 2.5px solid var(--blue);
+            box-shadow: 4px 4px 0 var(--blue);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+        .venmo-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--blue);
+            background: var(--yellow-hi);
+        }
+        .venmo-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 var(--blue);
+        }
+
+        /* ── PRIZE CARDS ── */
+        .prizes { margin-top: 0; }
+
+        .prize-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .prize-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--yellow);
+        }
+
+        .prize-meta {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .prize-card .prize-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.45rem;
+            color: var(--blue);
+            letter-spacing: 0.03em;
+            line-height: 1.1;
+        }
+
+        .prize-card .value-tag {
+            flex-shrink: 0;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--muted);
+            background: var(--cream);
+            border: 1px solid var(--border);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.2rem;
+            white-space: nowrap;
+        }
+
+        .open-badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--blue);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+
+        .prize-card p {
+            font-size: 0.9rem;
+            color: #484848;
+            line-height: 1.65;
+        }
+
+        .prize-card .thanks {
+            font-size: 0.78rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 0.8rem;
+        }
+
+        /* Business name tags — yellow pill */
+        .biz-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin: 0.9rem 0;
+        }
+        .biz-tags a {
+            background: var(--yellow);
+            color: var(--blue);
+            font-size: 0.77rem;
+            font-weight: 700;
+            padding: 0.28rem 0.65rem;
+            border-radius: 4px;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            transition: background 0.15s, transform 0.1s;
+        }
+        .biz-tags a:hover {
+            background: var(--yellow-hi);
+            transform: translateY(-1px);
+        }
+        .biz-tags .more {
+            background: transparent;
+            color: var(--blue);
+            border: 1.5px dashed var(--blue);
+            opacity: 0.6;
+        }
+        .biz-tags .more:hover {
+            background: transparent;
+            opacity: 1;
+        }
+
+        /* Winner choice note */
+        .winner-choice {
+            font-size: 0.875rem;
+            color: var(--blue);
+            font-weight: 600;
+            background: var(--cream);
             border-radius: 8px;
+            padding: 0.85rem 1rem 0.85rem 1.25rem;
+            margin-top: 0.75rem;
+            position: relative;
+        }
+        .winner-choice::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--yellow);
+            border-radius: 8px 0 0 8px;
+        }
+
+        /* Out-of-town sub-cards */
+        .oot-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.32em;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0.25rem 0 1rem;
+        }
+        .oot-label::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: var(--yellow);
+            border-radius: 1px;
+        }
+
+        .oot-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .oot-card {
+            background: var(--cream);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 1.1rem 1.2rem 1rem 1.5rem;
+            position: relative;
+        }
+        .oot-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--yellow);
+            border-radius: 10px 0 0 10px;
+        }
+
+        .oot-card .oot-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--blue);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.3rem;
+        }
+
+        .oot-card p {
+            font-size: 0.875rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* ── VENMO NOTE ── */
+        .venmo-note {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 0.9rem;
+            line-height: 1.55;
+        }
+        .venmo-note strong {
+            color: var(--blue);
+            font-weight: 700;
+        }
+        .venmo-note .warning {
+            display: inline-block;
+            margin-top: 0.3rem;
+            color: var(--blue);
+            font-weight: 600;
+            background: var(--yellow);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── ANNOUNCEMENT ── */
+        .announce-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .announce-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--yellow);
+        }
+        .announce-card p {
+            font-size: 0.925rem;
+            color: #484848;
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+        .announce-card a {
+            color: var(--blue);
+            font-weight: 700;
+            text-decoration: none;
+            border-bottom: 1.5px solid var(--yellow);
+            transition: opacity 0.15s;
+        }
+        .announce-card a:hover { opacity: 0.7; }
+        .announce-dates {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        .date-chip {
+            background: var(--blue);
+            color: var(--yellow);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.25rem;
+            letter-spacing: 0.06em;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+        }
+
+        .family-note {
+            font-size: 0.77rem;
+            font-style: italic;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 0.8rem;
+        }
+
+        /* ── Scroll fade-in ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                        transform 0.55s cubic-bezier(0.22,1,0.36,1);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--blue);
+            padding: 3.5rem 1.5rem 2.25rem;
+            text-align: center;
+            clip-path: polygon(0 2.25rem, 100% 0, 100% 100%, 0 100%);
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .footer-headline {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.6rem, 5vw, 2.1rem);
+            color: var(--yellow);
+            letter-spacing: 0.06em;
+            display: block;
+            margin: 0.6rem 0 1.75rem;
+        }
+
+        .home-link {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.75rem;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .home-link:hover { color: var(--yellow); }
+
+        /* ── Desktop (768px+) ── */
+        @media (min-width: 768px) {
+            header { padding: 2.25rem 2rem 5.5rem; }
+            .container { padding: 0 2rem 3rem; }
+
+            .price-tile .num { font-size: 3.75rem; }
+
+            .venmo-btn {
+                display: inline-flex;
+                width: auto;
+                min-width: 320px;
+                margin: 0 auto;
+            }
+
+            .oot-grid { flex-direction: row; }
+            .oot-grid .oot-card { flex: 1; }
+
+            .prize-card { padding: 1.75rem; }
         }
     </style>
 </head>
 <body>
-    <h1>OPPORTUNTY DRAWING</h1>
-    
-    <div class="intro">
-        <p>I'm thrilled to be running the Boston Marathon as part of the Dana-Farber Marathon Challenge, raising funds to support groundbreaking cancer research and patient care. To help reach my fundraising goal, I'm hosting an opportunity drawing with amazing prizes designed for both my Boston-area supporters and friends and family from around the country.</p>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="back-link h-1">← Back to main page</a>
+        <p class="header-eyebrow h-2">DFMC 2026 · Dana-Farber</p>
+        <h1 class="header-title h-3">
+            Opportunity
+            <span class="accent">Drawing</span>
+        </h1>
+        <p class="tagline h-4">Win prizes. Support Dana-Farber. Beat cancer.</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Intro -->
+        <section class="intro fade-in">
+            <p class="lead">Every entry goes toward Dana-Farber's cancer research — and two lucky supporters win prizes.</p>
+            <p class="sub">Local to Boston or cheering from afar, there's a prize tier for you.</p>
+        </section>
+
+        <hr class="rule fade-in">
+
+        <!-- How It Works -->
+        <section class="how fade-in">
+            <div class="section-label">How It Works</div>
+            <p class="sub-note"><strong>Two winners</strong> per prize category &middot; All prizes valued at <strong>$250</strong></p>
+            <div class="pricing-row">
+                <div class="price-tile">
+                    <span class="num">$10</span>
+                    <div class="entries">1 entry</div>
+                </div>
+                <div class="price-tile">
+                    <span class="num">$25</span>
+                    <div class="entries">3 entries</div>
+                </div>
+            </div>
+            <a href="https://account.venmo.com/u/cdemurjian" target="_blank" class="venmo-btn">
+                Enter via Venmo &nbsp;→
+            </a>
+            <p class="venmo-note">
+                Venmo is <strong>@cdemurjian</strong>.<br>
+                <span class="warning">⚠ Include your email in the payment note so we can contact you if you win.</span>
+            </p>
+        </section>
+
+        <hr class="rule fade-in">
+
+        <!-- Announcement -->
+        <section class="fade-in">
+            <div class="section-label">Winners Announcement</div>
+            <div class="announce-card">
+                <p>Winners will be announced on <a href="https://www.instagram.com/cdemurjian" target="_blank">Instagram</a> and contacted directly via email on the following dates:</p>
+                <div class="announce-dates">
+                    <div class="date-chip">March 28</div>
+                    <div class="date-chip">March 29</div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="rule fade-in">
+
+        <!-- Prizes -->
+        <section class="prizes">
+            <div class="section-label fade-in">Prizes</div>
+
+            <!-- Boston Basket -->
+            <div class="prize-card fade-in">
+                <div class="prize-meta">
+                    <div class="prize-name">Cambridge / Boston<br>Gift Card Basket</div>
+                    <span class="value-tag">$250 value</span>
+                </div>
+                <span class="open-badge">Open to Everyone</span>
+                <p>A curated collection of gift cards from the best local spots — breakfast favorites, beloved bakeries, go-to restaurants, and neighborhood hangouts.</p>
+                <p style="font-size: 0.75rem; color: var(--muted); font-style: italic; margin-bottom: 0.4rem;">Click any to learn more ↓</p>
+                <div class="biz-tags">
+					<a href="https://www.pammyscambridge.com/" target="_blank">Pammy's</a>
+                    <a href="https://www.flourbakery.com/" target="_blank">Flour</a>
+                    <a href="http://zinnekenswaffles.com/" target="_blank">Zinnekins</a>
+                    <a href="https://thelockebar.com/" target="_blank">Locke</a>
+                    <a href="https://smootstandard.com/" target="_blank">Smoot</a>
+                    <a href="https://www.bagelsaurus.com/" target="_blank">Bagelsaurus</a>
+                    <a href="https://somerville.americanflatbread.com/" target="_blank">American Flatbread</a>
+                    <a href="https://www.graftonstreetcambridge.com/" target="_blank">Grafton Street</a>
+                    <a href="https://www.blacksheepbagelcafe.com/" target="_blank">Black Sheep</a>
+                    <a href="https://bomdough.com/" target="_blank">Bom Dough</a>
+                    <a href="#" class="more">And More!</a>
+                </div>
+                <p class="thanks">Huge thanks to these generous local partners for making this possible.</p>
+                <p class="winner-choice">Winners choose their own combination of gift cards totaling $250 — mix and match however you'd like.</p>
+            </div>
+
+            <!-- Out-of-Town -->
+            <div class="prize-card fade-in">
+                <div class="prize-meta">
+                    <div class="prize-name">Out-of-Town Prizes</div>
+                    <span class="value-tag">$250 value</span>
+                </div>
+                <p style="margin-bottom: 1rem;">Not local? Pick your prize:</p>
+                <div class="oot-grid">
+                    <div class="oot-card">
+                        <div class="oot-title">Personal Chef Experience</div>
+                        <p>I'll come to you and cook a customized date-night dinner for you and a guest. Full menu, full experience.</p>
+                    </div>
+                    <div class="oot-card">
+                        <div class="oot-title">Cape Cod Weekend Getaway</div>
+                        <p>A one-night stay at a family place on the Cape — Lobster Rolls, warm beach, whatever you would like!</p>
+                    </div>
+                </div>
+                <p class="family-note">These prizes are reserved for close friends &amp; family.</p>
+            </div>
+
+        </section>
+
     </div>
 
-    <h2>How It Works:</h2>
-    <p>There will be <strong>two winners</strong> for each prize category, with all prizes valued at $250-300. Whether you're local to the Boston area or supporting from afar, there's a prize tier designed with you in mind!</p>
-    <p>One entry is $10, three are $25. Send donations to Venmo: <a href="https://account.venmo.com/u/cdemurjian" target="_blank">@cdemurjian</a>.</p>
+    <!-- Footer -->
+    <footer class="fade-in">
+        <p>Every entry fuels Dana-Farber's mission to conquer cancer.</p>
+        <span class="footer-headline">Thank you for running this race with me.</span>
+        <a href="index.html" class="home-link">← Back to the main fundraising page</a>
+    </footer>
 
-    <hr>
+    <!-- Scroll fade-in -->
+    <script>
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    </script>
 
-    <h2>PRIZES</h2>
-
-    <div class="prize-section">
-        <h3>CAMBRIDGE/BOSTON AREA GIFT CARD BASKET</h3>
-        <p>Everyone is welcome to enter for these baskets.</p>
-        <p>Includes gift cards from <span class="businesses">Flour, Zinnekins, Locke, Smoot, Pammy's, Bagelsaurus, American Flatbread, Grafton Street, Black Sheep, and Dunkin</span>.</p>
-        <p>Huge thanks to these generous local partners for contributing to the baskets! These curated collections celebrate the best of what our neighborhood has to offer—from beloved breakfast spots and bakeries to favorite restaurants and local hangouts.</p>
-    </div>
-
-    <div class="prize-section">
-        <h3>OUT-OF-TOWN PRIZES</h3>
-        <p>For supporters not interested in the Boston gift cards, choose one:</p>
-        <ul>
-            <li><strong>Personal Chef Experience:</strong> I'll come to you and prepare a customized date night dinner for you and a guest.</li>
-            <li><strong>Cape Cod Weekend Getaway:</strong> A one-night stay at my girlfriend's family place on the Cape.</li>
-        </ul>
-        <p class="note">Out-of-town prizes are intended for close friends and family; if you're unsure whether you should choose this, it's likely not a fit.</p>
-    </div>
-
-    <hr>
-
-    <div class="closing">
-        <p>Every entry supports Dana-Farber's mission to conquer cancer. Thank you for being part of this journey with me!</p>
-    </div>
 </body>
 </html>

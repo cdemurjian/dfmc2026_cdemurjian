@@ -1,187 +1,370 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
-  --yellow: #ffde00;
-  --blue: #162f77;
-  --light-blue: #3a6edb;
-  --light-gray: #f4f4f4;
+  --yellow:    #ffde00;
+  --yellow-hi: #ffe94d;
+  --blue:      #162f77;
+  --cream:     #f5f4ee;
+  --white:     #ffffff;
+  --text:      #1a1a1a;
+  --muted:     #6a6a6a;
+  --border:    #e2e1d8;
 }
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
-  padding: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
 body {
-  max-width: 70ch;
-  margin: 3rem auto;
-  padding: 3rem 2rem;
-  background-color: var(--light-gray);
-  outline: 12px dashed var(--yellow);
-  box-shadow: 0 0 0 12px var(--blue);
-}
-
-
-#title {
-  font-weight: 800;
-  color: var(--blue);
-}
-
-h1, h2, h3 {
-  text-align: center;
-}
-
-/* 🔹 Make section headers the correct blue */
-h2, h3 {
-  color: var(--blue);
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-p {
-  color: #454545;
-  text-align: center;
+  background-color: var(--cream);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 28px,
+    rgba(22, 47, 119, 0.028) 28px,
+    rgba(22, 47, 119, 0.028) 29px
+  );
+  color: var(--text);
   line-height: 1.6;
+  min-height: 100vh;
 }
 
-hr {
-  color: var(--light-blue);
-  border: none;
-  border-top: 2px solid var(--light-blue);
-  width: 50%;
-  margin: 1.5rem auto;
+/* ── HEADER ── */
+header {
+  background: var(--blue);
+  padding: 1.75rem 1.5rem 5rem;
+  text-align: center;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
 }
 
-.yellow {
+.header-eyebrow {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.2rem;
+}
+
+.header-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.75rem, 11vw, 5.25rem);
+  line-height: 0.95;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+
+.header-title .accent {
   color: var(--yellow);
-  text-shadow: -1px -1px 0 var(--blue), 1px -1px 0 var(--blue),
-               -1px 1px 0 var(--blue), 1px 1px 0 var(--blue);
 }
 
+.tagline {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.875rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+/* ── Staggered header animations ── */
+@keyframes riseUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.h-1 { animation: riseUp 0.5s  cubic-bezier(0.22, 1, 0.36, 1) 0.05s both; }
+.h-2 { animation: riseUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both; }
+.h-3 { animation: riseUp 0.5s  cubic-bezier(0.22, 1, 0.36, 1) 0.32s both; }
+
+/* ── MAIN CONTAINER ── */
 main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  align-items: center;
+  gap: 1.75rem;
 }
 
-img {
-  width: 70%;
+/* ── PHOTO ── */
+main img {
+  width: 82%;
   height: auto;
-  align-self: center;
-}
-
-.donate {
-  display: block;
-  text-align: center;
-  font-weight: bold;
-  margin: 0.75rem auto 0.5rem auto;
-  padding: 0.8rem 2rem;        /* was 0.6rem 1.5rem → ~30% larger */
-  width: fit-content;
-  background-color: var(--yellow);
-  color: var(--blue);
-  border: 4px solid var(--blue);
   border-radius: 10px;
-  font-size: 1.25em;           /* text size up */
-  transition: transform 0.2s, background-color 0.2s;
-}
-.donate:hover {
-  transform: scale(1.05);
-  background-color: #fff96b;
+  border: 3px solid var(--white);
+  box-shadow: 5px 5px 0 var(--yellow);
+  margin-top: 2.25rem;
 }
 
-
-/* Optional: tighten the first paragraph below the donate button */
-main > p:first-of-type {
-  margin-top: 0.25rem;  /* bring it closer to the button */
-}
-
-.floating-donate {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background-color: var(--yellow);
+/* ── INTRO HOOK ── */
+p.intro {
   color: var(--blue);
-  border: 4px solid var(--blue);
-  border-radius: 12px;
-  padding: 0.8rem 1.8rem;      /* bigger hit area */
-  font-size: 1.25em;           /* text size up */
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-align: center;
+  line-height: 1.55;
+}
+
+/* ── GENERAL PARAGRAPHS ── */
+main > p {
+  font-size: 0.925rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.7;
+}
+
+main > p a {
+  color: var(--blue);
+  font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  border-bottom: 1.5px solid var(--yellow);
+  transition: opacity 0.15s;
 }
-.floating-donate:hover {
-  transform: scale(1.05);
-  background-color: #fff96b;
+main > p a:hover { opacity: 0.7; }
+
+/* ── DONATE BUTTON ── */
+a.donate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2.75rem;
+  background: var(--yellow);
+  color: var(--blue);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 2.5px solid var(--blue);
+  box-shadow: 4px 4px 0 var(--blue);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+a.donate:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--blue);
+  background: var(--yellow-hi);
+}
+a.donate:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--blue);
 }
 
+/* ── STORY SECTION ── */
+#story {
+  width: 100%;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+#story::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--yellow);
+}
 
-/* Fade-in animation */
+/* Story title (h2) — section-label style */
+#story h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.32em;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+#story h2::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: var(--yellow);
+  border-radius: 1px;
+}
+
+/* Hide the redundant hr right after h2 */
+#story h2 + hr { display: none; }
+
+/* Sub-section headings (h3) */
+#story h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  color: var(--blue);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  margin-top: 1.75rem;
+  text-align: left;
+}
+
+/* Story hr (between sub-sections if used) */
+#story hr {
+  border: none;
+  border-top: 1.5px solid var(--border);
+  margin: 1.5rem 0;
+}
+
+/* Story paragraphs */
+#story p {
+  font-size: 0.925rem;
+  color: #484848;
+  text-align: left;
+  line-height: 1.7;
+  margin-bottom: 0.9rem;
+}
+#story p:last-child { margin-bottom: 0; }
+
+/* Story links */
+#story a {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--yellow);
+  transition: opacity 0.15s;
+}
+#story a:hover { opacity: 0.7; }
+
+/* Closing callout (strong inside final p) */
+#story strong {
+  display: block;
+  font-size: 0.975rem;
+  font-weight: 600;
+  color: var(--blue);
+  font-family: 'DM Sans', sans-serif;
+  text-align: left;
+  line-height: 1.65;
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem 1.1rem 1.5rem;
+  margin-top: 1.5rem;
+  position: relative;
+}
+#story strong::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--yellow);
+  border-radius: 8px 0 0 8px;
+}
+
+/* ── Scroll fade-in ── */
 .fade-in {
   opacity: 0;
-  transform: translateY(25px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(18px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Intro line under the image */
-.intro {
-  color: var(--blue);
-  font-weight: bold;
-  font-size: 1em;
-  text-align: center;
-  margin: 1rem auto 0.5rem auto;
-}
-
-
-/* 🔹 Highlighted final statement */
-strong {
-  display: block;
-  text-align: center;
-  font-size: 1.25em;      /* larger text */
-  font-weight: 800;       /* bold emphasis */
-  color: var(--blue);     /* Dana-Farber blue for visual tie-in */
-  margin: 1.5rem auto;
-  line-height: 1.5;
-  max-width: 90%;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  body {
-    outline-width: 8px;
-    box-shadow: 0 0 0 8px var(--blue);
-    margin: 1.5rem auto;
-    padding: 2rem 1.25rem;
-  }
-  main {
-    gap: 2rem;
-  }
-  img {
-    width: 90%;
-  }
-  strong {
-    font-size: 1.1em;
-  }
-}
-
-/* Footer styling */
+/* ── FOOTER ── */
 footer {
-  font-size: 0.85rem;          /* smaller text size */
-  line-height: 1.4;           /* tighter vertical spacing */
-  color: #333;                /* softer gray for footer text */
-  margin-top: 2rem;
+  background: var(--blue);
+  padding: 3.5rem 1.5rem 2.25rem;
   text-align: center;
+  clip-path: polygon(0 2.25rem, 100% 0, 100% 100%, 0 100%);
+}
+
+footer p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0.4rem;
 }
 
 footer a {
-  color: var(--light-blue);   /* keep links in your theme color */
+  color: rgba(255, 255, 255, 0.65);
   text-decoration: none;
+  border-bottom: 1px solid rgba(255, 222, 0, 0.35);
+  transition: color 0.2s, border-color 0.2s;
+}
+footer a:hover {
+  color: var(--yellow);
+  border-color: var(--yellow);
 }
 
-footer a:hover {
-  text-decoration: underline;
+.footer-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  color: var(--yellow);
+  letter-spacing: 0.06em;
+  display: block;
+  margin: 0.6rem 0 1.5rem;
+}
+
+/* ── DRAWING PAGE LINK ── */
+a.drawing-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: var(--blue);
+  color: var(--yellow);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 2.5px solid var(--yellow);
+  box-shadow: 4px 4px 0 var(--yellow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+a.drawing-link:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--yellow);
+}
+a.drawing-link:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--yellow);
+}
+a.drawing-link .dl-arrow {
+  opacity: 0.7;
+  font-size: 1rem;
+}
+
+/* ── FLOATING DONATE ── */
+.floating-donate {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--yellow);
+  color: var(--blue);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  border: 2.5px solid var(--blue);
+  box-shadow: 3px 3px 0 var(--blue);
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  z-index: 100;
+}
+.floating-donate:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--blue);
+  background: var(--yellow-hi);
+}
+.floating-donate:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--blue);
+}
+
+/* ── Desktop (768px+) ── */
+@media (min-width: 768px) {
+  header { padding: 2.25rem 2rem 5.5rem; }
+  main { padding: 0 2rem 3rem; gap: 2rem; }
+  main img { width: 70%; }
+  #story { padding: 2rem 2rem; }
+  #story h3 { font-size: 1.35rem; }
 }
