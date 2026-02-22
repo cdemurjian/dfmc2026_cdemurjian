@@ -444,6 +444,10 @@
             font-size: 0.975rem;
             letter-spacing: 0.02em;
         }
+        .venmo-note .warning .mark {
+            color: #111;
+            font-weight: 800;
+        }
 
         /* ── ANNOUNCEMENT ── */
         .announce-card {
@@ -607,12 +611,12 @@
                     <div class="entries">3 entries</div>
                 </div>
             </div>
-            <a href="https://account.venmo.com/u/cdemurjian" target="_blank" class="venmo-btn">
+            <a href="https://venmo.com/u/cdemurjian" class="venmo-btn" id="venmo-link">
                 Enter via Venmo &nbsp;→
             </a>
             <p class="venmo-note">
-                Venmo is <strong>@cdemurjian</strong>.<br>
-                <span class="warning">!! Include your email in the payment note so we can contact you if you win.</span>
+                <span class="warning"><span class="mark">!!</span> Include your email in the payment note so we can contact you if you win.</span><br>
+                Venmo is <strong>@cdemurjian</strong>.
             </p>
         </section>
 
@@ -699,6 +703,37 @@
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.12 });
         document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+        // Try the Venmo app on mobile first, then fall back to the public profile page.
+        const venmoLink = document.getElementById('venmo-link');
+        if (venmoLink) {
+            const venmoWebUrl = 'https://venmo.com/u/cdemurjian';
+            const venmoAppUrl = 'venmo://paycharge?txn=pay&recipients=cdemurjian';
+
+            venmoLink.addEventListener('click', e => {
+                const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                if (!isMobile) return;
+
+                e.preventDefault();
+
+                let fallbackTimer = window.setTimeout(() => {
+                    if (!document.hidden) window.location.href = venmoWebUrl;
+                }, 900);
+
+                const clearFallback = () => {
+                    if (!fallbackTimer) return;
+                    window.clearTimeout(fallbackTimer);
+                    fallbackTimer = null;
+                };
+
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) clearFallback();
+                }, { once: true });
+                window.addEventListener('pagehide', clearFallback, { once: true });
+
+                window.location.href = venmoAppUrl;
+            });
+        }
     </script>
 
 </body>
