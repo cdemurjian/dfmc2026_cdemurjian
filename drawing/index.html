@@ -548,6 +548,192 @@
         }
         .home-link:hover { color: var(--yellow); }
 
+        /* ── REFERRAL CARD ── */
+        .referral-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-top: 2.25rem;
+            margin-bottom: 1.75rem;
+            position: relative;
+        }
+        .referral-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--yellow);
+        }
+        .referral-toggle-btn {
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 1.1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            text-align: left;
+        }
+        .referral-toggle-left {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            flex-wrap: wrap;
+        }
+        .referral-badge {
+            background: var(--yellow);
+            color: var(--blue);
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        .referral-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: var(--blue);
+            letter-spacing: 0.04em;
+            line-height: 1;
+        }
+        .referral-sub {
+            font-size: 0.78rem;
+            color: var(--muted);
+            width: 100%;
+            margin-top: 0.15rem;
+        }
+        .referral-chevron {
+            font-size: 1rem;
+            color: var(--blue);
+            flex-shrink: 0;
+            opacity: 0.55;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            font-style: normal;
+            line-height: 1;
+        }
+        .referral-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .referral-body.open {
+            max-height: 700px;
+        }
+        .referral-body-inner {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1.5px solid var(--border);
+        }
+        .referral-intro-text {
+            font-size: 0.875rem;
+            color: var(--muted);
+            line-height: 1.65;
+            padding: 1rem 0 1.1rem;
+        }
+        .referral-tiers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 0.85rem;
+        }
+        .r-tier {
+            background: var(--cream);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+            position: relative;
+        }
+        .r-tier.bonus {
+            border-color: rgba(255, 222, 0, 0.9);
+        }
+        .r-tier.bonus::after {
+            content: 'BONUS';
+            position: absolute;
+            top: -9px; right: 10px;
+            background: var(--yellow);
+            color: var(--blue);
+            font-size: 0.58rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            padding: 0.12rem 0.4rem;
+            border-radius: 3px;
+        }
+        .r-tier .t-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.75rem;
+            color: var(--blue);
+            line-height: 1;
+            display: block;
+        }
+        .r-tier .t-unit {
+            font-size: 0.72rem;
+            color: var(--muted);
+            font-weight: 500;
+            display: block;
+            margin-top: 0.1rem;
+        }
+        .r-tier .t-cond {
+            font-size: 0.78rem;
+            color: #555;
+            line-height: 1.5;
+            margin-top: 0.6rem;
+        }
+        .referral-cap-note {
+            font-size: 0.77rem;
+            color: var(--muted);
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 1.25rem;
+        }
+        .referral-how-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.82rem;
+            letter-spacing: 0.28em;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.85rem;
+        }
+        .referral-how-label::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: var(--yellow);
+            border-radius: 1px;
+        }
+        .referral-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .r-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            font-size: 0.85rem;
+            color: #484848;
+            line-height: 1.55;
+        }
+        .r-step-num {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--blue);
+            color: var(--yellow);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0.15rem;
+        }
+
         /* ── Desktop (768px+) ── */
         @media (min-width: 768px) {
             header { padding: 2.25rem 2rem 5.5rem; }
@@ -587,6 +773,47 @@
     </header>
 
     <div class="container">
+
+        <!-- Referral Program -->
+        <div class="referral-card fade-in">
+            <button class="referral-toggle-btn" aria-expanded="false" id="referral-btn" onclick="toggleReferral()">
+                <div class="referral-toggle-left">
+                    <span class="referral-badge">New</span>
+                    <span class="referral-title">Referral Program</span>
+                    <span class="referral-sub">Spread the word · Earn free entries</span>
+                </div>
+                <span class="referral-chevron" id="referral-chevron">▾</span>
+            </button>
+            <div class="referral-body" id="referral-body">
+                <div class="referral-body-inner">
+                    <p class="referral-intro-text">I'm trying to reach as many people as possible, and I need your help to do it. Refer someone who enters, and I want to reward you for it.</p>
+                    <div class="referral-tiers">
+                        <div class="r-tier">
+                            <span class="t-num">1</span>
+                            <span class="t-unit">free entry</span>
+                            <p class="t-cond">Refer anyone who enters the raffle</p>
+                        </div>
+                        <div class="r-tier bonus">
+                            <span class="t-num">2</span>
+                            <span class="t-unit">free entries</span>
+                            <p class="t-cond">Refer someone <em>and</em> you've entered at $25+</p>
+                        </div>
+                    </div>
+                    <p class="referral-cap-note">Max 3 free entries per person. Already entered? You're still eligible.</p>
+                    <div class="referral-how-label">How to Claim</div>
+                    <div class="referral-steps">
+                        <div class="r-step">
+                            <span class="r-step-num">1</span>
+                            <span>Have your friend include <strong>"referred by [your name]"</strong> in their Venmo note when they enter.</span>
+                        </div>
+                        <div class="r-step">
+                            <span class="r-step-num">2</span>
+                            <span>That's it. I'll track it and add your free entries before the drawing. If they forget to add the note, just message me at <a href="mailto:cdemu@mit.edu" style="color:var(--blue);font-weight:600;border-bottom:1.5px solid var(--yellow);text-decoration:none;">cdemu@mit.edu</a>.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Intro -->
         <section class="intro fade-in">
@@ -699,6 +926,16 @@
 
     <!-- Scroll fade-in -->
     <script>
+        function toggleReferral() {
+            const body = document.getElementById('referral-body');
+            const btn = document.getElementById('referral-btn');
+            const chevron = document.getElementById('referral-chevron');
+            const isOpen = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!isOpen));
+            body.classList.toggle('open', !isOpen);
+            chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+        }
+
         const obs = new IntersectionObserver(entries => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.12 });
